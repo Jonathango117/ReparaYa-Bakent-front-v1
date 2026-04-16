@@ -1,0 +1,27 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+*.lock
+*.iml
+pubspec.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.db
+*.sqlite3
+*.log
+reparaya.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Secrets
+*.env
+*.pem
+*.key
