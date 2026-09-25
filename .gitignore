@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# Backend Python (reparaya-backend)
+reparaya-backend/venv/
+reparaya-backend/.env
+reparaya-backend/__pycache__/
+reparaya-backend/*.pyc
+reparaya-backend/_archivo_intento_anterior/
