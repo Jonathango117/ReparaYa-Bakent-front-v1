@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import app.db.registry  # noqa: F401  (carga todos los modelos para que SQLAlchemy resuelva las relaciones)
 from app.api.v1.endpoints.auth import router as auth_router
 from app.core.config import settings
 
