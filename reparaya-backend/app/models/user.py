@@ -28,6 +28,8 @@ class User(Base):
     )
 
     user_roles: Mapped[list["UserRole"]] = relationship(back_populates="user")
+    client_profile: Mapped["ClientProfile | None"] = relationship(back_populates="user", uselist=False)
+    technician_profile: Mapped["TechnicianProfile | None"] = relationship(back_populates="user", uselist=False)
 
     def __repr__(self) -> str:
         return f"<User id={self.id} email={self.email}>"
