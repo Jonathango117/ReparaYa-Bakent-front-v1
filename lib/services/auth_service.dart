@@ -7,6 +7,10 @@ class AuthService {
   static const String baseUrl = 'http://127.0.0.1:8000';
   static const Duration _timeout = Duration(seconds: 15);
 
+  // ==========================================
+  // REGISTRO DE USUARIOS
+  // ==========================================
+
   Future<bool> register({
     required String email,
     required String password,
@@ -38,6 +42,7 @@ class AuthService {
 
       if (response.statusCode == 200 ||
           response.statusCode == 201) {
+        print('[REGISTRO] Usuario registrado correctamente');
         return true;
       }
 
@@ -49,6 +54,10 @@ class AuthService {
     }
   }
 
+  // ==========================================
+  // INICIO DE SESIÓN
+  // ==========================================
+
   Future<bool> login({
     required String email,
     required String password,
@@ -56,7 +65,7 @@ class AuthService {
     try {
       final response = await http
           .post(
-            Uri.parse('$baseUrl/login'),
+            Uri.parse('$baseUrl/auth/login'),
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json',
@@ -70,18 +79,41 @@ class AuthService {
 
       print('[LOGIN] Estado HTTP: ${response.statusCode}');
 
-      if (response.statusCode != 200) {
-        print('[LOGIN] Respuesta: ${response.body}');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data =
+            jsonDecode(response.body);
+
+        // Obtener información del usuario
+        final user = data['user'];
+
+        print('[LOGIN] Inicio de sesión exitoso');
+        print('[LOGIN] Usuario: ${user['full_name']}');
+        print('[LOGIN] Rol: ${user['role']}');
+
+        // Obtener JWT
+        final String token = data['access_token'];
+
+        print('[LOGIN] Token recibido correctamente');
+
+        // TODO: Guardar token de forma segura
+        return token.isNotEmpty;
       }
 
-      return response.statusCode == 200;
+      print('[LOGIN] Respuesta: ${response.body}');
+      return false;
     } catch (e) {
       print('[LOGIN] Error: $e');
       return false;
     }
   }
 
+  // ==========================================
+  // CIERRE DE SESIÓN
+  // ==========================================
+
   Future<void> logout() async {
-    // No hay un endpoint de cierre de sesión configurado todavía.
+    // Próximamente eliminaremos el token
+    // cuando implementemos almacenamiento seguro.
+    print('[LOGOUT] Sesión cerrada localmente');
   }
 }
