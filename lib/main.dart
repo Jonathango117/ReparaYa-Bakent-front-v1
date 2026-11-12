@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'config/theme.dart';
 import 'screens/login_screens.dart';
@@ -12,9 +13,18 @@ class ReparaYaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Repara Ya',
+      title: 'ReparaYa',
       debugShowCheckedModeBanner: false,
+
+      // Tema claro
       theme: AppTheme.lightTheme,
+
+      // Tema oscuro
+      darkTheme: AppTheme.darkTheme,
+
+      // Detecta automáticamente el tema del celular
+      themeMode: ThemeMode.system,
+
       home: const LoginScreen(),
     );
   }
