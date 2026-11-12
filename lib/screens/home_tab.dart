@@ -297,10 +297,10 @@ class _HomeTabState extends State<HomeTab> {
               duration: const Duration(milliseconds: 200),
               width: 84,
               decoration: BoxDecoration(
-                color: selected ? AppColors.red : AppColors.background,
+                color: selected ? const Color.fromARGB(255, 168, 196, 217) : AppColors.background,
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
-                    color: selected ? AppColors.red : AppColors.border),
+                    color: selected ? const Color.fromARGB(255, 24, 168, 239) : AppColors.border),
                 boxShadow: selected
                     ? [
                         BoxShadow(
